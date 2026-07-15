@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <!-- ატვირთვის სექცია -->
+    <div class="col-md-5 mb-4">
+        <div class="card p-4 bg-white">
+            <h3 class="text-center text-success mb-3">📸 სწრაფი სკანირება</h3>
+
+            <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="mb-4 text-center mt-3">
+                    <label class="btn btn-success-agro btn-lg py-4 w-100 fs-4 rounded-pill shadow" style="cursor: pointer;">
+                        📸 აირჩიე და გააგზავნე ფოტოები
+                        <input type="file" name="photos" accept="image/*"
+                               class="d-none" id="photoInput" multiple
+                               onchange="this.form.submit()">
+                    </label>
+                    <div class="form-text text-muted mt-3">
+                        💡 შეგიძლიათ მონიშნოთ რამდენიმე ფოტო ერთად. ატვირთვისთანავე თითოეულს მიენიჭება ნომერი და დაიწყება ანალიზი.
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- მიმდინარე შედეგები -->
+    <div class="col-md-7">
+        <div class="card p-4 bg-white h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2 flex-wrap gap-2">
+                <h3 class="text-dark m-0">📊 მიმდინარე კვლევის ანალიზი</h3>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">ჯამი: {{ "%.2f"|format(total_cost) }} ₾</span>
+                    {% if session %}
+                    <a href="/export_excel/{{ session.id }}"
+                       class="btn btn-sm btn-outline-success rounded-pill fw-bold px-3"
+                       title="Excel-ში გადმოწერა">
+                        📥 Excel
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if not grouped_records %}
+                <div class="alert alert-info text-center">
+                    მიმდინარე ეტაპზე ჯერ არცერთი ფოტო არ არის გაანალიზებული.
+                </div>
+            {% else %}
+                <!-- პერსონალური ბარათები პოზიციების მიხედვით -->
+                <div style="max-height: 560px; overflow-y: auto;" class="pe-1">
+                {% for position, pos_records in grouped_records %}
+                    <div class="card mb-3 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                        <!-- ბარათის სათაური -->
+                        <div class="card-header py-2 px-3 d-flex justify-content-between align-items-center"
+                             style="background: linear-gradient(135deg, #1e3a2f, #2e7d32);">
+                            <div>
+                                <span class="fw-bold text-white fs-6">📍 {{ position }}</span>
+                                <span class="badge bg-light text-dark ms-2">{{ pos_records|length }} სკანირება</span>
+                            </div>
+                            <div>
+                                {% set pos_total = namespace(val=0) %}
+                                {% for r in pos_records %}
+                                    {% set pos_total.val = pos_total.val + r.calculated_cost %}
+                                {% endfor %}
+                                <span class="badge bg-warning text-dark fw-bold">
+                                    ზარალი: {{ "%.2f"|format(pos_total.val) }} ₾
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- ბარათის შიგთავსი -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0 small">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="ps-3">ფოტო</th>
+                                            <th>დიაგნოზი</th>
+                                            <th>რეკომენდაცია</th>
+                                            <th>ზარალი</th>
+                                            <th>დრო</th>
+                                            <th class="text-end pe-3">მინიჭება</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for r in pos_records %}
+                                        <tr>
+                                            <td class="ps-3">
+                                                <img src="{{ url_for('static', filename=r.image_path) }}"
+                                                     class="rounded img-thumbnail"
+                                                     style="width: 50px; height: 50px; object-fit: cover;">
+                                            </td>
+                                            <td>
+                                                {% if r.detected_disease == 'ჯანსაღი' %}
+                                                    <span class="badge bg-success">✅ ჯანსაღი</span>
+                                                {% elif r.detected_disease == 'უცნობი' %}
+                                                    <span class="badge bg-secondary">❓ უცნობი</span>
+                                                {% elif 'საცნობარო ბაზა ცარიელია' in r.detected_disease %}
+                                                    <span class="badge bg-secondary">❓ უცნობი</span>
+                                                {% else %}
+                                                    <span class="badge bg-warning text-dark">⚠️ {{ r.detected_disease }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if disease_descriptions.get(r.detected_disease) %}
+                                                    <span class="text-success small fw-bold" style="font-size: 0.8rem; line-height: 1.2; display: block; max-width: 250px;">
+                                                        💊 {{ disease_descriptions.get(r.detected_disease) }}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="text-muted small">-</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-danger fw-bold">{{ "%.2f"|format(r.calculated_cost) }} ₾</td>
+                                            <td><small class="text-muted">{{ r.created_at.split(' ')[1] }}</small></td>
+                                            <td class="text-end pe-2">
+                                                <form action="/assign_disease/{{ r.id }}" method="post"
+                                                      class="d-flex align-items-center gap-1 justify-content-end">
+                                                    <input type="hidden" name="redirect_to" value="index">
+                                                    <select name="disease_name" class="form-select form-select-sm"
+                                                            style="max-width: 130px; font-size: 0.75rem;">
+                                                        {% for d in diseases %}
+                                                            <option value="{{ d.name }}"
+                                                                {% if d.name == r.detected_disease %}selected{% endif %}>
+                                                                {{ d.name }}
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <button type="submit" class="btn btn-sm btn-outline-primary px-2"
+                                                            title="შენახვა და სწავლება">💾</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+// Scripts simplified. Manual inputs removed.
+</script>
+
+{% endblock %}

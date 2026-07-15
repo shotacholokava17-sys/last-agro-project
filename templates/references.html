@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <!-- ფასებისა და კოეფიციენტების მართვა -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-4 bg-white shadow-sm">
+            <h3 class="text-success mb-3">⚙️ დაავადებები და ფასები</h3>
+            <p class="text-muted small">გამოთვლის ფორმულა: <strong>რაოდენობა × კოეფიციენტი × ფასი</strong></p>
+
+            <form action="/references" method="post" class="mb-4">
+                <input type="hidden" name="action" value="update_rates">
+
+                {% for s in settings %}
+                <div class="mb-3 pb-3 border-bottom">
+                    <div class="row align-items-center mb-2">
+                        <div class="col-4">
+                            <span class="fw-bold text-dark">{{ s.name }}</span>
+                        </div>
+                        <div class="col-3">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">კ.</span>
+                                <input type="number" step="0.1" name="mult_{{ s.name }}" class="form-control" value="{{ s.multiplier }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">₾</span>
+                                <input type="number" step="0.1" name="cost_{{ s.name }}" class="form-control" value="{{ s.cost }}">
+                            </div>
+                        </div>
+                        <div class="col-2 text-end">
+                            {% if s.name not in ['ჯანსაღი', 'ჭრაქი', 'სიდამპლე', 'ნაცარი'] %}
+                            <button type="button" onclick="if(confirm('წაიშალოს {{ s.name }}?')) { document.getElementById('del_{{ loop.index }}').submit(); }" class="btn btn-outline-danger btn-sm">🗑️</button>
+                            {% else %}
+                            <span class="text-muted small">სისტ.</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <textarea name="desc_{{ s.name }}" class="form-control form-control-sm" rows="2"
+                                  placeholder="💊 მკურნალობა, რეკომენდაცია, შენიშვნა...">{{ s.description or '' }}</textarea>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success-agro w-100 rounded-pill mt-2">💾 შენახვა</button>
+            </form>
+
+            <!-- Deletion forms declared outside parent form to prevent HTML nesting issues -->
+            {% for s in settings %}
+                {% if s.name not in ['ჯანსაღი', 'ჭრაქი', 'სიდამპლე', 'ნაცარი'] %}
+                <form id="del_{{ loop.index }}" action="/delete_disease/{{ s.name }}" method="post" style="display:none;"></form>
+                {% endif %}
+            {% endfor %}
+
+            <hr class="my-4">
+
+            <!-- ახალი დაავადების ტიპის შექმნა -->
+            <h4 class="mb-3">➕ დაავადების ახალი ტიპის დამატება</h4>
+            <form action="/references" method="post">
+                <input type="hidden" name="action" value="add_disease_type">
+                <div class="input-group">
+                    <input type="text" name="new_disease_name" class="form-control" placeholder="დაავადების დასახელება" required>
+                    <button class="btn btn-primary" type="submit">დამატება</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- საცნობარო ფოტოები -->
+    <div class="col-md-6 mb-4">
+        <div class="card p-4 bg-white shadow-sm">
+            <h3 class="text-success mb-3">📁 საცნობარო (Reference) ფოტოები</h3>
+
+            <form action="/references" method="post" enctype="multipart/form-data" class="mb-4">
+                <input type="hidden" name="action" value="add_ref">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">აირჩიეთ დაავადება:</label>
+                    <select name="disease_name" class="form-select" required>
+                        {% for s in settings %}
+                            <option value="{{ s.name }}">{{ s.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">საცნობარო ფოტო:</label>
+                    <input type="file" name="ref_photo" class="form-control" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 rounded-pill">📥 ატვირთვა და ბაზაში შენახვა</button>
+            </form>
+
+            <h4 class="border-top pt-3">არსებული საცნობარო ბაზა ({{ refs|length }} ფოტო):</h4>
+            <div class="table-responsive" style="max-height: 280px;">
+                <table class="table table-sm align-middle">
+                    <thead>
+                        <tr>
+                            <th>დაავადება</th>
+                            <th>სურათი</th>
+                            <th class="text-end">მოქმედება</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in refs %}
+                        <tr>
+                            <td><strong>{{ r.disease_name }}</strong></td>
+                            <td>
+                                <img src="{{ url_for('static', filename=r.image_path) }}" class="rounded img-thumbnail" style="width: 45px; height: 45px; object-fit: cover;">
+                            </td>
+                            <td class="text-end">
+                                <form action="/delete_reference/{{ r.id }}" method="post" class="d-inline" onsubmit="return confirm('დარწმუნებული ხართ, რომ გსურთ ამ ფოტოს წაშლა?');">
+                                    <button type="submit" class="btn btn-danger btn-sm py-0 px-2">🗑️</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

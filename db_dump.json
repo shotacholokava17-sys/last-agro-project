@@ -1,0 +1,311 @@
+{
+  "settings": [
+    {
+      "id": 1,
+      "name": "ჯანსაღი",
+      "multiplier": 0.0,
+      "cost": 0.0
+    },
+    {
+      "id": 2,
+      "name": "ჭრაქი",
+      "multiplier": 8.0,
+      "cost": 0.5
+    },
+    {
+      "id": 3,
+      "name": "სიდამპლე",
+      "multiplier": 3.0,
+      "cost": 0.7
+    },
+    {
+      "id": 4,
+      "name": "ნაცარი",
+      "multiplier": 3.0,
+      "cost": 0.7
+    },
+    {
+      "id": 9,
+      "name": "დამბლა",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 10,
+      "name": "ესკა",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 11,
+      "name": "ვაზის ბაქტერიული კიბო",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 12,
+      "name": "თეთრი ლპობა",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 13,
+      "name": "ნაცრისფერი ლპობა",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 14,
+      "name": "ტკიპა",
+      "multiplier": 1.0,
+      "cost": 1.0
+    },
+    {
+      "id": 15,
+      "name": "ფოთლის სიწითლე ვისუსული",
+      "multiplier": 1.0,
+      "cost": 1.0
+    }
+  ],
+  "references": [
+    {
+      "id": 1,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001822_akhardani_qartuli_vazi_8277261819917192_928972199181002_2526188199911-326x245.jpg",
+      "hash_val": "99eab551242d99cd"
+    },
+    {
+      "id": 2,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001825_falkoni_vazi_agrosfero_526267271881919911788128_00902892827262524232332151561672-326x245.jpg",
+      "hash_val": "d1706a97962e45a7"
+    },
+    {
+      "id": 3,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001827_khashmis_saferavi_adgilwarmoshoba_8272625618999171991782_78282010110282_771190-326x245.jpg",
+      "hash_val": "f87cca0b8ff094a1"
+    },
+    {
+      "id": 4,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001842_melody_compact_wraqi_25356363673784747847484822_2909038383389329093383939902222-326x245.jpg",
+      "hash_val": "d1612e14936d1f3e"
+    },
+    {
+      "id": 5,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001845_mevenakheoba_mervineoba_awara_1992002820019100192_6272819918109018902_00128190019011-326x245.jpg",
+      "hash_val": "dea22ca4351bb2d3"
+    },
+    {
+      "id": 6,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001852_mevenakheoba_mervineoba_chile_5237278282892929283738_252636737276372-326x245.jpg",
+      "hash_val": "a902d4f161c7767c"
+    },
+    {
+      "id": 7,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001901_mevenakheoba_mervineoba_dasavletshi_727288151618826281_252527188917192_26271991719191-326x245.jpg",
+      "hash_val": "d662a7f08d70079b"
+    },
+    {
+      "id": 8,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001907_mevenakheoba_mervineoba_samegrelo_827272991819181892928_2728129191002_2526181991101-326x245.jpg",
+      "hash_val": "b26dd2b24479b6a2"
+    },
+    {
+      "id": 9,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001912_qartuli_vazi_sakmiela_878272781898918199282_2782929190811002829_252627199181991-326x245.jpg",
+      "hash_val": "8733f0e47dbc0692"
+    },
+    {
+      "id": 10,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001920_shavi_aspinzura_vazisjishi_82782727188178189278_282919901910_7772621881818911-326x245.jpg",
+      "hash_val": "a56d8b26e96585b4"
+    },
+    {
+      "id": 11,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001924_sufris_jishi_moldova_7272738389929028383829939_9928387837837838292093930-326x245.jpg",
+      "hash_val": "ba9de4f0ca839343"
+    },
+    {
+      "id": 12,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001932_vazi_dacvis_newscema_003838292928299333_030373728822783_009373299228299383333.jpg",
+      "hash_val": "903aef4c312b5597"
+    },
+    {
+      "id": 13,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001938_vazi_shida_qartli_28993736272828_82992637221.jpg",
+      "hash_val": "c95021ef6307f86d"
+    },
+    {
+      "id": 14,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001945_vazi_venakhis_gasheneba_72727261718991181912_7272891919189292_987642178891-326x245.jpg",
+      "hash_val": "ae5413867b2bc65c"
+    },
+    {
+      "id": 15,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001955_venakhi_gasheneba_vazi_827279198192928_00282001910022929v_0292001910022902k-326x245.jpg",
+      "hash_val": "d76f2a303f28552a"
+    },
+    {
+      "id": 16,
+      "disease_name": "ჯანსაღი",
+      "image_path": "references/ref_20260715001959_vzai_venakhi_filoqsera_9282727353638289278291_0027282920181902_622721990100191010-326x245.jpg",
+      "hash_val": "87c0649b59b9167e"
+    },
+    {
+      "id": 17,
+      "disease_name": "ჭრაქი",
+      "image_path": "references/ref_20260715002037_chraqi.jpg",
+      "hash_val": "cedd129a23467636"
+    },
+    {
+      "id": 18,
+      "disease_name": "ჭრაქი",
+      "image_path": "references/ref_20260715002045_Tchraqi.jpg",
+      "hash_val": "d1e8137895d33d85"
+    },
+    {
+      "id": 19,
+      "disease_name": "სიდამპლე",
+      "image_path": "references/ref_20260715002051_sidample.jpg",
+      "hash_val": "ae6cf13390e1c36c"
+    },
+    {
+      "id": 20,
+      "disease_name": "ნაცარი",
+      "image_path": "references/ref_20260715002102_nacari.jpg",
+      "hash_val": "db063638c96ddc86"
+    }
+  ],
+  "records": [
+    {
+      "id": 2,
+      "session_id": 2,
+      "position": "1",
+      "image_path": "uploads/plant_20260715_002252_akhardani_qartuli_vazi_8277261819917192_928972199181002_2526188199911-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:22:52"
+    },
+    {
+      "id": 3,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002255_khashmis_saferavi_adgilwarmoshoba_8272625618999171991782_78282010110282_771190-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:22:55"
+    },
+    {
+      "id": 4,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002259_shavi_aspinzura_vazisjishi_82782727188178189278_282919901910_7772621881818911-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:22:59"
+    },
+    {
+      "id": 5,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002301_vzai_venakhi_filoqsera_9282727353638289278291_0027282920181902_622721990100191010-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:01"
+    },
+    {
+      "id": 6,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002302_qartuli_vazi_sakmiela_878272781898918199282_2782929190811002829_252627199181991-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:02"
+    },
+    {
+      "id": 7,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002305_melody_compact_wraqi_25356363673784747847484822_2909038383389329093383939902222-326x245.jpg",
+      "detected_disease": "ჯანსაღი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:05"
+    },
+    {
+      "id": 8,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002315_ვაზის ბაქტერიული კიბო.jpg",
+      "detected_disease": "უცნობი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:15"
+    },
+    {
+      "id": 9,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002323_თეთრი ლპობა.jpg",
+      "detected_disease": "უცნობი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:23"
+    },
+    {
+      "id": 10,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002330_ფოთლის სიწითლე (ვირუსული).jpg",
+      "detected_disease": "უცნობი",
+      "calculated_cost": 0.0,
+      "created_at": "2026-07-15 00:23:30"
+    },
+    {
+      "id": 11,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002358_chraqi.jpg",
+      "detected_disease": "ჭრაქი",
+      "calculated_cost": 4.0,
+      "created_at": "2026-07-15 00:23:58"
+    },
+    {
+      "id": 12,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002402_sidample.jpg",
+      "detected_disease": "სიდამპლე",
+      "calculated_cost": 2.0999999999999996,
+      "created_at": "2026-07-15 00:24:02"
+    },
+    {
+      "id": 13,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002405_Tchraqi.jpg",
+      "detected_disease": "ჭრაქი",
+      "calculated_cost": 4.0,
+      "created_at": "2026-07-15 00:24:05"
+    },
+    {
+      "id": 14,
+      "session_id": 2,
+      "position": "",
+      "image_path": "uploads/plant_20260715_002408_nacari.jpg",
+      "detected_disease": "ნაცარი",
+      "calculated_cost": 2.0999999999999996,
+      "created_at": "2026-07-15 00:24:08"
+    }
+  ]
+}
